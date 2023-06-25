@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!--CONTROL PANEL-->
+
+<div class="container">
+    <div class="row">
+        <div class="card-deck d-flex text-center" style="display: flex; justify-content: space-evenly ">
+            <div class="card" style="width:18rem">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="text-danger">
+                            Rejected
+                        </p>
+                    </h5>
+                    <p class="card-text">
+                        {{rejected.count}}
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="">Total</p>
+                    </h5>
+                    <p class="card-text">
+                        {{resumes.count}}
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="text-warning">
+                            Considered
+                        </p>
+                    </h5>
+                    <p class="card-text">
+                        {{considered.count}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#    SECOND CONTAINER #}
+<div class="container">
+    <div class="row">
+        <div class="card-deck d-flex text-center" style="display: flex; justify-content: space-evenly ">
+            <div class="card" style="width:18rem">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="text-warning">
+                            DEVELOPER
+                        </p>
+                    </h5>
+                    <p class="card-text">
+                        {{developer.count}}
+                    </p>
+                </div>
+            </div>
+
+           <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="text-secondary">INTERN</p>
+                    </h5>
+                    <p class="card-text">
+                        {{intern.count}}
+                    </p>
+                </div>
+            </div>
+
+            <div class="card" style="width: 18rem">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <p class="text-primary">TESTER</p>
+                    </h5>
+                    <p class="card-text">
+                        {{tester.count}}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--LIST PANEl-->
+    <div class="container">
+<!--        heading section of the body-->
+        <nav class="nav justify-content-center">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-companies" type="button" role="tab" aria-controls="nav-companies" aria-selected="true">Companies</button>
+              <button class="nav-link" id="nav-tester-tab" data-bs-toggle="tab" data-bs-target="#nav-tester" type="button" role="tab" aria-controls="nav-date" aria-selected="false">Tester</button>
+              <button class="nav-link" id="nav-developer-tab" data-bs-toggle="tab" data-bs-target="#nav-developer" type="button" role="tab" aria-controls="nav-date" aria-selected="false">Developer</button>
+                              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-intern" type="button" role="tab" aria-controls="nav-intern" aria-selected="false">Internship</button>
+              <button class="nav-link" id="nav-rejected-tab" data-bs-toggle="tab" data-bs-target="#nav-rejected" type="button" role="tab" aria-controls="nav-rejected" aria-selected="false">Rejected</button>
+              <button class="nav-link" id="nav-considered-tab" data-bs-toggle="tab" data-bs-target="#nav-considered" type="button" role="tab" aria-controls="nav-considered" aria-selected="false">Considered</button>
+            </div>
+          </nav>
+    <!--        end of heading section-->
+
+
+    <!--        body of the card-->
+          <div class="tab-content p-5" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-companies" role="tabpanel" aria-labelledby="nav-companies-tab">
+                <div class="list-group">
+                    {% for app in resumes %}
+                    <span class="list-group-item list-group-item-action" aria-current="false">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 lead"><a href="{% url 'update_app' app.pk %}">{{app.company}}</a> </h5>
+                            <small>{{app.date}}</small>
+                        </div>
+                        <p class="mb-1"></p>
+                        <small>Status: </small><small class="status">{{app.result}}</small>
+                    </span>
+                      {% endfor %}
+                </div>
+            </div>
+
+
+            <div class="tab-pane fade" id="nav-tester" role="tabpanel" aria-labelledby="nav-date-tab">
+                <div class="list-group">
+                    {% for app in tester %}
+                    <span class="list-group-item list-group-item-action" aria-current="false">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 lead">{{app.position}}</h5>
+                            <small>{{app.company}}</small>
+                        </div>
+                        <p class="mb-1"></p>
+                        <small>Status: </small><small class="status">{{app.result}}</small>
+                    </span>
+                      {% endfor %}
+                </div>
+            </div>
+
+          <div class="tab-pane fade" id="nav-developer" role="tabpanel" aria-labelledby="nav-date-tab">
+              <div class="list-group">
+                  {% for app in developer %}
+                      <span class="list-group-item list-group-item-action" aria-current="false">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 lead">{{ app.position }}</h5>
+                        <small>{{ app.company }}</small>
+                    </div>
+                    <p class="mb-1"></p>
+                    <small>Status: </small><small class="status">{{ app.result }}</small>
+                </span>
+                  {% endfor %}
+              </div>
+          </div>
+
+
+          <div class="tab-pane fade" id="nav-intern" role="tabpanel" aria-labelledby="nav-date-tab">
+              <div class="list-group">
+                  {% for app in intern %}
+                      <span class="list-group-item list-group-item-action" aria-current="false">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 lead">{{ app.position }}</h5>
+                        <small>{{ app.company }}</small>
+                    </div>
+                    <p class="mb-1"></p>
+                    <small>Status: </small><small class="status">{{ app.result }}</small>
+                </span>
+                  {% endfor %}
+              </div>
+          </div>
+
+            <div class="tab-pane fade" id="nav-rejected" role="tabpanel" aria-labelledby="nav-rejected-tab">
+                <div class="list-group">
+                    {% for app in rejected %}
+                    <span class="list-group-item list-group-item-action" aria-current="false">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 lead text-danger">{{app.company}}</h5>
+                            <small>{{app.date}}</small>
+                        </div>
+                        <p class="mb-1"></p>
+                        <small>Position: {{app.position}}</small>
+                    </span>
+                      {% endfor %}
+                </div>
+            </div>
+
+          <div class="tab-pane fade" id="nav-intern" role="tabpanel" aria-labelledby="nav-positions-tab">
+
+
+            <div class="tab-pane fade" id="nav-considered" role="tabpanel" aria-labelledby="nav-considered-tab">
+                <div class="list-group">
+                    {% for app in considered %}
+                    <span class="list-group-item list-group-item-action" aria-current="false">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1 lead"><a href="{% url 'update_app' app.pk %}" class="text-warning">{{app.company}}</a> </h5>
+                            <small>{{app.date}}</small>
+                        </div>
+                        <p class="mb-1"></p>
+                        <small>Position: {{app.position}}</small>
+                    </span>
+                      {% endfor %}
+                </div>
+            </div>
+          </div>
+    </div>
+
+<script>
+    const statusColor = document.querySelectorAll('.status');
+
+    statusColor.forEach(element => {
+      const statusText = element.innerText.trim().toLowerCase();
+
+      if (statusText === 'under consideration') {
+        element.classList.add('text-warning');
+      } else if (statusText === 'rejected') {
+        element.classList.add('text-danger');
+      }else if (statusText === 'accepted') {
+        element.classList.add('text-success');
+      }
+    });
+
+</script>
+{% endblock %}
+</div>

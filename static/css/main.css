@@ -1,0 +1,46 @@
+    .container {
+        margin-top: 50px;
+    }
+    .opposite{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    #delete-btn{
+        background-color: darkred;
+        color:white;
+    }
+    #update-btn{
+        background-color: #ffda48;
+        color:white;
+    }
+    #appHead a{
+        color:white;
+    }
+    .lead a{
+        color:black;
+    }
+    .navi {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 60px;
+        background-color: lightslategray;
+        color: white;
+    }
+    a:hover {
+        text-decoration: none;
+        color: white;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        color: #495057;
+    }
+    .second a{
+        color: black;
+    }

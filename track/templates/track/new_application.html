@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container">
+
+        <form action="" method="POST">
+                {%csrf_token%}
+                <div class="form-group" style="margin-bottom: 70px;">
+                    {{ form|crispy }}
+                    <br>
+                    <div class="opposite">
+                        <button class="btn border-warning second rounded-pill" type="submit">Create</button>
+                        <button class="btn border-warning second rounded-pill" type="submit"><a href="{% url 'new company' %}">Add Company</a></button>
+                    </div>
+                </div>
+        </form>
+    </div>
+
+{% endblock %}
