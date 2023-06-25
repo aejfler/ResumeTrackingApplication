@@ -2,4 +2,4 @@
 Simple Django app for keeping track of resume application proccess
 
 
-https://user-images.githubusercontent.com/101977156/221895501-033e3f1b-d84b-4a4c-baf8-3f72be11820e.mp4
+https://github-production-user-asset-6210df.s3.amazonaws.com/101977156/248572581-b7baa6ee-2e2e-4329-8b3f-b7ac9c94e37d.mp4
